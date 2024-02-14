@@ -1,16 +1,16 @@
 COMMENT =	lightweight compositor for X11
 
-DIST_TUPLE =   github yshui picom v11.1 .
+DIST_TUPLE =   github yshui picom v11.2 .
 
 CATEGORIES =	x11
 
 # MPL 2.0
 PERMIT_PACKAGE =	Yes
 
-WANTLIB += EGL GL X11 X11-xcb c config dbus-1 ev m pcre2-8 pixman-1
+WANTLIB += EGL epoxy GL X11 X11-xcb c config dbus-1 ev m pcre2-8 pixman-1
 WANTLIB += pthread xcb-composite xcb-damage xcb-glx xcb-image xcb-present
 WANTLIB += xcb-randr xcb-render-util xcb-render xcb-shape xcb-sync
-WANTLIB += xcb-xfixes xcb-util xcb epoxy
+WANTLIB += xcb-xfixes xcb-util xcb
 
 MODULES =		devel/meson
 
