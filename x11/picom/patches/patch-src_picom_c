@@ -1,0 +1,41 @@
+Index: src/picom.c
+--- src/picom.c.orig
++++ src/picom.c
+@@ -17,6 +17,7 @@
+ #include <fcntl.h>
+ #include <inttypes.h>
+ #include <math.h>
++#include <pthread.h>
+ #include <sched.h>
+ #include <stddef.h>
+ #include <stdio.h>
+@@ -2557,19 +2558,24 @@ void set_rr_scheduling(void) {
+ 
+ 	int ret;
+ 	struct sched_param param;
+-
+-	ret = sched_getparam(0, &param);
++	int old_policy;
++	ret = pthread_getschedparam(pthread_self(), &old_policy, &param);
+ 	if (ret != 0) {
+ 		log_debug("Failed to get old scheduling priority");
+ 		return;
+ 	}
+ 
+ 	param.sched_priority = priority;
+-	ret = sched_setscheduler(0, SCHED_RR, &param);
++
++	ret = pthread_setschedparam(pthread_self(), SCHED_RR, &param);
+ 	if (ret != 0) {
+-		log_info("Failed to set real-time scheduling priority to %d.", priority);
++		log_info("Failed to set real-time scheduling priority to %d. Consider "
++		         "giving picom the CAP_SYS_NICE capability or equivalent "
++		         "support.",
++		         priority);
+ 		return;
+ 	}
++
+ 	log_info("Set real-time scheduling priority to %d", priority);
+ }
+ 
+

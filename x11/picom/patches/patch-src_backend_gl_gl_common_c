@@ -1,0 +1,13 @@
+Index: src/backend/gl/gl_common.c
+--- src/backend/gl/gl_common.c.orig
++++ src/backend/gl/gl_common.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: MPL-2.0
+ // Copyright (c) Yuxuan Shui <yshuiv7@gmail.com>
+-#include <GL/gl.h>
+-#include <GL/glext.h>
++#include <epoxy/gl.h>
++#include <epoxy/glx.h>
+ #include <stdbool.h>
+ #include <stdio.h>
+ #include <string.h> 
