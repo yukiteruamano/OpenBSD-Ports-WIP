@@ -25,6 +25,7 @@ MAINTAINER=	Brad Smith <brad@comstyle.com>
 PERMIT_PACKAGE=	Yes
 
 WANTLIB-common=	dbus-1 iconv idn intl m pthread
+WANTLIB-main += ${WANTLIB-common} ${MODLUA_WANTLIB}
 WANTLIB-main += EGL GL ICE Qt5Core Qt5Gui Qt5Svg Qt5Widgets Qt5X11Extras
 WANTLIB-main += SDL SDL_image SM X11 X11-xcb Xau Xcomposite Xcursor
 WANTLIB-main += Xdamage Xdmcp Xext Xfixes Xi Xinerama Xpm Xrandr Xrender
@@ -54,23 +55,24 @@ WANTLIB-main += absl_time absl_time_zone absl_vlog_config_internal aom archive
 WANTLIB-main += ass atk-1.0 atk-bridge-2.0 atspi avahi-client avahi-common
 WANTLIB-main += avcodec avformat avutil b2 bluray brotlidec brotlienc
 WANTLIB-main += bz2 c cairo cairo-gobject cddb crypto dav1d double-conversion
-WANTLIB-main += drm dvbpsi dvdnav dvdread ebml epoxy execinfo expat
+WANTLIB-main += drm dvbpsi dvdnav dvdread ebml epoll-shim epoxy execinfo expat
 WANTLIB-main += ffi fontconfig freetype fribidi gbm gcrypt gdk-3 gdk_pixbuf-2.0
 WANTLIB-main += gio-2.0 glapi glib-2.0 gmodule-2.0 gmp gnutls gobject-2.0
 WANTLIB-main += gpg-error graphite2 gsm gthread-2.0 gtk-3 harfbuzz
-WANTLIB-main += hogweed icudata icui18n icuuc idn2 jpeg lcms2 lz4 lzma
+WANTLIB-main += hogweed icudata icui18n icuuc idn2 jpeg lz4 lzma
 WANTLIB-main += matroska mp3lame nettle nfs notify ogg opus p11-kit
 WANTLIB-main += pango-1.0 pangocairo-1.0 pangoft2-1.0 pcre2-16 pcre2-8
 WANTLIB-main += pixman-1 png postproc protobuf-lite rsvg-2
 WANTLIB-main += sharpyuv smb2 sndio soxr speex speexdsp ssl swresample
 WANTLIB-main += swscale tag tar tasn1 theoradec theoraenc tiff udfread
 WANTLIB-main += unibreak unistring usbhid utf8_range utf8_validity
-WANTLIB-main += vorbis vorbisenc vpx webp x264 x265 xcb xcb-composite
-WANTLIB-main += xcb-dri2 xcb-dri3 xcb-glx xcb-keysyms xcb-present xcb-randr
-WANTLIB-main += xcb-render xcb-shm xcb-sync xcb-xfixes xcb-xv xml2
-WANTLIB-main += xshmfence xvidcore z zstd ${WANTLIB-common} ${MODLUA_WANTLIB}
+WANTLIB-main += vorbis vorbisenc vpx wayland-client wayland-cursor
+WANTLIB-main += wayland-egl webp x264 x265 xcb xcb-composite xcb-dri2
+WANTLIB-main += xcb-dri3 xcb-glx xcb-keysyms xcb-present xcb-randr
+WANTLIB-main += xcb-render xcb-shm xcb-sync xcb-xfixes xcb-xv xkbcommon
+WANTLIB-main += xml2 xshmfence xvidcore z zstd
 # v4l2 is dlopen'd
-WANTLIB-main+=	v4l2
+WANTLIB-main +=	v4l2
 
 WANTLIB-jack=	db execinfo jack vlccore ${WANTLIB-common}
 
@@ -114,7 +116,6 @@ LIB_DEPENDS-main= ${MODQT5_LIB_DEPENDS} \
 		devel/sdl \
 		devel/sdl-image \
 		graphics/ffmpeg \
-		graphics/lcms2 \
 		graphics/libdvbpsi \
 		graphics/png \
 		multimedia/libass \

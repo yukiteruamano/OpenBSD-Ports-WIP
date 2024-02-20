@@ -13,8 +13,9 @@ MAINTAINER=	Brad Smith <brad@comstyle.com>
 PERMIT_PACKAGE=	Yes
 
 # GL and epoxy are dlopened by libplacebo
-WANTLIB+=	${COMPILER_LIBCXX} epoxy execinfo GL lcms2 m pthread
-WANTLIB+=	shaderc_shared vulkan 
+WANTLIB +=	${COMPILER_LIBCXX}
+WANTLIB +=	epoxy execinfo GL lcms2 m pthread
+WANTLIB +=	shaderc_shared vulkan 
 
 MODULES=	devel/meson
 
@@ -27,12 +28,12 @@ LIB_DEPENDS=	graphics/lcms2 \
 		graphics/vulkan-loader
 
 COMPILER=	base-clang ports-gcc
-COMPILER_LANGS=	c
 
 CFLAGS +=		-I${X11BASE}/include
 LDFLAGS +=		-L${X11BASE}/lib
 
-MODMESON_CONFIGURE_ENV +=	LDFLAGS="${LDFLAGS}"
+MODMESON_CONFIGURE_ENV +=	CFLAGS="${CFLAGS}" \
+					LDFLAGS="${LDFLAGS}"
 
 CONFIGURE_ARGS+=-Ddefault_library=both \
 		-Dd3d11=disabled \
