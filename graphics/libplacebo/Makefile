@@ -12,10 +12,12 @@ MAINTAINER=	Brad Smith <brad@comstyle.com>
 # LGPLv2.1+
 PERMIT_PACKAGE=	Yes
 
-# GL and epoxy are dlopened by libplacebo
 WANTLIB +=	${COMPILER_LIBCXX}
-WANTLIB +=	epoxy execinfo GL lcms2 m pthread
-WANTLIB +=	shaderc_shared vulkan 
+WANTLIB +=	execinfo lcms2 m pthread
+WANTLIB +=	shaderc_shared vulkan
+# GL and epoxy are dlopened by libplacebo
+WANTLIB +=	epoxy GL
+
 
 MODULES=	devel/meson
 
@@ -44,8 +46,8 @@ CONFIGURE_ARGS+=-Ddefault_library=both \
 		-Dshaderc=enabled \
 		-Dopengl=enabled \
 		-Dunwind=disabled \
-		-Dxxhash=disabled \
-		-Dvulkan=enabled
+		-Dvulkan=enabled \
+		-Dxxhash=disabled
 
 NO_TEST=	Yes
 
