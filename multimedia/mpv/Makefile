@@ -14,11 +14,11 @@ HOMEPAGE =		https://mpv.io/
 # GPLv2+
 PERMIT_PACKAGE =	Yes
 
-WANTLIB += EGL SDL2 X11 Xext Xinerama Xpresent Xrandr Xss Xv archive
+WANTLIB += ${MODLUA_WANTLIB}
+WANTLIB += EGL SDL2 X11 Xext Xpresent Xrandr Xss Xv archive
 WANTLIB += ass avcodec avdevice avfilter avformat avutil bluray
 WANTLIB += c cdio cdio_cdda cdio_paranoia dvdnav iconv jpeg lcms2
-WANTLIB += ${MODLUA_WANTLIB} m placebo pthread sndio SPIRV-Tools-shared
-WANTLIB += swresample swscale vulkan z zimg 
+WANTLIB += m placebo pthread sndio swresample swscale vulkan z zimg
 
 MODULES =		devel/meson \
 			lang/lua \
@@ -41,7 +41,6 @@ LIB_DEPENDS =		archivers/libarchive \
 			graphics/jpeg \
 			graphics/lcms2 \
 			graphics/libplacebo \
-			graphics/spirv-tools \
 			graphics/vulkan-loader \
 			graphics/zimg \
 			multimedia/libass \
@@ -121,7 +120,8 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 CFLAGS +=		-I${LOCALBASE}/include
 LDFLAGS +=		-L${LOCALBASE}/lib
 
-MODMESON_CONFIGURE_ENV +=	LDFLAGS="${LDFLAGS}"
+MODMESON_CONFIGURE_ENV +=	CFLAGS="${CFLAGS}" \
+					LDFLAGS="${LDFLAGS}"
 
 NO_TEST =		Yes
 
