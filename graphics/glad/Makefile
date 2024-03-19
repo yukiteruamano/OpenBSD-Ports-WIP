@@ -1,9 +1,8 @@
 COMMENT =	multi-language Vulkan/GL/GLES/EGL/GLX/WGL loader-generator
 
-GH_TAGNAME =	v2.0.5
+GH_TAGNAME =	v2.0.6
 GH_ACCOUNT =	Dav1dde
 GH_PROJECT =	glad
-REVISION =	0
 
 CATEGORIES =	graphics
 
