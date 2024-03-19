@@ -1,12 +1,11 @@
 COMMENT =	fast and exact implementation of from_chars for float/double
 
-V =		6.1.0
+V =		6.1.1
 PKGNAME =	fast-float-${V}
-REVISION =	0
 GH_TAGNAME =	v${V}
 GH_ACCOUNT =	fastfloat
 GH_PROJECT =	fast_float
-DISTFILES =	fast_float-{v}${V}-0.tar.gz
+DISTFILES =	fast_float-{v}${V}.tar.gz
 
 CATEGORIES =	devel
 
