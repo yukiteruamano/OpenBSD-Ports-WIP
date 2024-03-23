@@ -5,7 +5,6 @@ PKGNAME =	fast-float-${V}
 GH_TAGNAME =	v${V}
 GH_ACCOUNT =	fastfloat
 GH_PROJECT =	fast_float
-DISTFILES =	fast_float-{v}${V}.tar.gz
 
 CATEGORIES =	devel
 
