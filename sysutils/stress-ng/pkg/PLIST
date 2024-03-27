@@ -1,0 +1,5 @@
+@bin bin/stress-ng
+@man man/man1/stress-ng.1
+share/bash-completion/
+share/bash-completion/completions/
+share/bash-completion/completions/stress-ng
