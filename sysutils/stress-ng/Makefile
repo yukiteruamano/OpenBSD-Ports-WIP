@@ -1,40 +1,40 @@
 COMMENT =	next-gen tool to impose configurable amount of load
 
-V						= V0.17.06
+V		= V0.17.06
 DIST_TUPLE	+= github ColinIanKing stress-ng ${V} .
-CATEGORIES	=	sysutils
+CATEGORIES	= sysutils
 
-HOMEPAGE		= https://github.com/ColinIanKing/stress-ng
+HOMEPAGE	= https://github.com/ColinIanKing/stress-ng
 
 MAINTAINER	= Jose Maldonado <josemald89@gmail.com>
 
 # GPLv2+
-PERMIT_PACKAGE	=	Yes
+PERMIT_PACKAGE	= Yes
 
 WANTLIB += c drm EGL gbm GL GLESv2 gmp jpeg m mpfr pthread X11 X11-xcb
 WANTLIB += xcb xcb-dri2 xcb-dri3 xcb-present xcb-randr xcb-sync xcb-xfixes
 WANTLIB += xshmfence xxhash z
 
-USE_GMAKE		=	YES
+USE_GMAKE	= YES
 CONFIGURE_STYLE = gnu
 
 BUILD_DEPENDS = devel/libinotify \
-								devel/mpfr \
-								graphics/jpeg \
-								sysutils/xxhash
+		devel/mpfr \
+		graphics/jpeg \
+		sysutils/xxhash
 
-RUN_DEPENDS =		devel/mpfr \
-								graphics/jpeg \
-								sysutils/xxhash
+RUN_DEPENDS = devel/mpfr \
+	      graphics/jpeg \
+	      sysutils/xxhash
 
-CFLAGS	=	-I${LOCALBASE}/include \
-					-I${X11BASE}/include
+CFLAGS	= -I${LOCALBASE}/include \
+	  -I${X11BASE}/include
 
 LDFLAGS	= -L${LOCALBASE}/lib/ \
-					-L${X11BASE}/lib
+	  -L${X11BASE}/lib
 
-MAKE_ENV +=	CFLAGS="${CFLAGS}" \
-						LDFLAGS="${LDFLAGS}"
+MAKE_ENV += CFLAGS="${CFLAGS}" \
+	    LDFLAGS="${LDFLAGS}"
 
 do-configure:
 	cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} ${_MAKE_JOBS} config
