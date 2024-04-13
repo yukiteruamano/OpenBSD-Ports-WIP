@@ -1,6 +1,6 @@
 COMMENT =	next-gen tool to impose configurable amount of load
 
-V		= V0.17.06
+V		= V0.17.07
 DIST_TUPLE	+= github ColinIanKing stress-ng ${V} .
 CATEGORIES	= sysutils
 
@@ -27,10 +27,10 @@ RUN_DEPENDS = devel/mpfr \
 	      graphics/jpeg \
 	      sysutils/xxhash
 
-CFLAGS	= -I${LOCALBASE}/include \
+CFLAGS	+= -I${LOCALBASE}/include \
 	  -I${X11BASE}/include
 
-LDFLAGS	= -L${LOCALBASE}/lib/ \
+LDFLAGS	+= -L${LOCALBASE}/lib/ \
 	  -L${X11BASE}/lib
 
 MAKE_ENV += CFLAGS="${CFLAGS}" \
