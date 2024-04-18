@@ -2,10 +2,10 @@ COMMENT =		movie player based on MPlayer/mplayer2
 
 GH_ACCOUNT =		mpv-player
 GH_PROJECT =		mpv
-GH_TAGNAME =		v0.37.0
+GH_TAGNAME =		v0.38.0
 USE_NOBTCFI =		Yes
 
-SHARED_LIBS +=		mpv		2.0
+SHARED_LIBS +=		mpv		2.1
 
 CATEGORIES =		multimedia x11
 
@@ -54,7 +54,9 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+4,-guic
 
 CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
+			-Daudiounit=disabled \
 			-Dcdda=enabled \
+			-Ddvbin=disabled \
 			-Ddvdnav=enabled \
 			-Dlibmpv=true \
 			-Dsdl2=enabled \
@@ -62,6 +64,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dalsa=disabled \
 			-Dandroid-media-ndk=disabled \
 			-Daudiounit=disabled \
+			-Davfoundation=disabled \
 			-Dcaca=disabled \
 			-Dcocoa=disabled \
 			-Dcoreaudio=disabled \
@@ -78,6 +81,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Degl-angle-win32=disabled \
 			-Degl-drm=disabled \
 			-Degl-wayland=disabled \
+			-Dgbm=disabled \
 			-Dgl-cocoa=disabled \
 			-Dgl-dxinterop=disabled \
 			-Dgl-dxinterop-d3d9=disabled \
@@ -93,7 +97,6 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Doss-audio=disabled \
 			-Dpipewire=disabled \
 			-Dpulse=disabled \
-			-Drpi-mmal=disabled \
 			-Drubberband=disabled \
 			-Dshaderc=disabled \
 			-Dsixel=disabled \
@@ -106,6 +109,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dvaapi-drm=disabled \
 			-Dvaapi-x11=disabled \
 			-Dvaapi-wayland=disabled \
+			-Dvaapi-win32=disabled \
 			-Dvapoursynth=disabled \
 			-Dvdpau=disabled \
 			-Dvdpau-gl-x11=disabled \

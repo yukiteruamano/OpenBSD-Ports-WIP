@@ -4,7 +4,7 @@ time if present at all, rather than only if needed)
 Index: meson.build
 --- meson.build.orig
 +++ meson.build
-@@ -342,7 +342,19 @@ if features['libdl']
+@@ -348,7 +348,19 @@ if features['libdl']
  endif
 
  # C11 atomics are mandatory but linking to the library is not always required.
