@@ -5,7 +5,7 @@ GH_PROJECT =		mpv
 GH_TAGNAME =		v0.38.0
 USE_NOBTCFI =		Yes
 
-SHARED_LIBS +=		mpv		2.1
+SHARED_LIBS +=		mpv		2.0
 
 CATEGORIES =		multimedia x11
 
@@ -54,27 +54,24 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+4,-guic
 
 CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
-			-Daudiounit=disabled \
-			-Dcdda=enabled \
-			-Ddvbin=disabled \
-			-Ddvdnav=enabled \
-			-Dlibmpv=true \
-			-Dsdl2=enabled \
-			-Dsndio=enabled \
 			-Dalsa=disabled \
 			-Dandroid-media-ndk=disabled \
 			-Daudiounit=disabled \
 			-Davfoundation=disabled \
 			-Dcaca=disabled \
+			-Dcdda=enabled \
 			-Dcocoa=disabled \
 			-Dcoreaudio=disabled \
 			-Dcuda-hwaccel=disabled \
 			-Dcuda-interop=disabled \
+			-Ddvbin=disabled \
+			-Ddvdnav=enabled \
 			-Dd3d9-hwaccel=disabled \
 			-Dd3d11=disabled \
 			-Dd3d-hwaccel=disabled \
 			-Ddirect3d=disabled \
 			-Ddmabuf-wayland=disabled \
+			-Ddrm=disabled \
 			-Degl-android=disabled \
 			-Degl-angle=disabled  \
 			-Degl-angle-lib=disabled \
@@ -89,6 +86,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dios-gl=disabled \
 			-Djack=disabled \
 			-Djavascript=disabled \
+			-Dlibmpv=true \
 			-Dmacos-cocoa-cb=disabled \
 			-Dmacos-media-player=disabled \
 			-Dmacos-touchbar=disabled \
@@ -98,12 +96,13 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dpipewire=disabled \
 			-Dpulse=disabled \
 			-Drubberband=disabled \
+			-Dsdl2=enabled \
+			-Dsdl2-audio=disabled \
 			-Dshaderc=disabled \
 			-Dsixel=disabled \
+			-Dspirv-cross=disabled \
 			-Dswift-build=disabled \
 			-Dswift-flags=disabled \
-			-Dsdl2-audio=disabled \
-			-Dspirv-cross=disabled \
 			-Duchardet=disabled \
 			-Dvaapi=disabled \
 			-Dvaapi-drm=disabled \
@@ -120,6 +119,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dwayland=disabled \
 			-Dwin32-threads=disabled \
 			-Dwasapi=disabled
+
 
 CFLAGS +=		-I${LOCALBASE}/include
 LDFLAGS +=		-L${LOCALBASE}/lib
