@@ -4,7 +4,7 @@ GH_ACCOUNT =		mpv-player
 GH_PROJECT =		mpv
 GH_TAGNAME =		v0.38.0
 USE_NOBTCFI =		Yes
-REVISION =			0
+REVISION =		0
 
 
 SHARED_LIBS +=		mpv		2.0
@@ -57,17 +57,12 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+4,-guic
 
 CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
-			-Dcdda=enabled \
-			-Ddvdnav=enabled \
-			-Dlibmpv=true \
-			-Dsdl2=enabled \
-			-Dsndio=enabled \
-			-Dvulkan=enabled \
 			-Dalsa=disabled \
 			-Dandroid-media-ndk=disabled \
 			-Daudiounit=disabled \
 			-Davfoundation=disabled \
 			-Dcaca=disabled \
+			-Dcdda=enabled \
 			-Dcocoa=disabled \
 			-Dcoreaudio=disabled \
 			-Dcuda-hwaccel=disabled \
@@ -79,14 +74,15 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Ddmabuf-wayland=disabled \
 			-Ddrm=enabled \
 			-Ddvbin=disabled \
+			-Ddvdnav=enabled \
 			-Degl=enabled \
 			-Degl-android=disabled \
 			-Degl-angle=disabled  \
 			-Degl-angle-lib=disabled \
 			-Degl-angle-win32=disabled \
-			-Degl-drm=enabled \
+			-Degl-drm=disabled \
 			-Degl-wayland=disabled \
-			-Dgbm=enabled \
+			-Dgbm=disabled \
 			-Dgl-cocoa=disabled \
 			-Dgl-dxinterop=disabled \
 			-Dgl-dxinterop-d3d9=disabled \
@@ -95,6 +91,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dios-gl=disabled \
 			-Djack=disabled \
 			-Djavascript=disabled \
+			-Dlibmpv=true \
 			-Dmacos-cocoa-cb=disabled \
 			-Dmacos-media-player=disabled \
 			-Dmacos-touchbar=disabled \
@@ -104,9 +101,11 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dpipewire=disabled \
 			-Dpulse=disabled \
 			-Drubberband=disabled \
+			-Dsdl2=enabled \
 			-Dsdl2-audio=disabled \
 			-Dshaderc=disabled \
 			-Dsixel=disabled \
+			-Dsndio=enabled \
 			-Dspirv-cross=disabled \
 			-Dswift-build=disabled \
 			-Dswift-flags=disabled \
@@ -121,6 +120,7 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dvdpau-gl-x11=disabled \
 			-Dvideotoolbox-gl=disabled \
 			-Dvideotoolbox-pl=disabled \
+			-Dvulkan=enabled \
 			-Dvulkan-interop=disabled \
 			-Dwayland=disabled \
 			-Dwin32-threads=disabled \
