@@ -6,7 +6,7 @@ Index: meson.build
 +++ meson.build
 @@ -348,7 +348,19 @@ if features['libdl']
  endif
-
+ 
  # C11 atomics are mandatory but linking to the library is not always required.
 -dependencies += cc.find_library('atomic', required: false)
 +if cc.links('''
@@ -22,6 +22,15 @@ Index: meson.build
 +else
 +    stdatomic_dep = cc.find_library('atomic')
 +endif
-
+ 
  cplugins = get_option('cplugins').require(
      win32 or (features['libdl'] and cc.has_link_argument('-rdynamic')),
+@@ -525,7 +537,7 @@ features += {'glob': features['glob-posix'] or feature
+
+ features += {'vt.h': cc.has_header_symbol('sys/vt.h', 'VT_GETMODE')}
+
+-features += {'consio.h': not features['vt.h'] and cc.has_header_symbol('sys/consio.h', 'VT_GETMODE')}
++features += {'consio.h': not features['vt.h'] and cc.has_header_symbol('dev/wscons/wsdisplay_usl_io.h', 'VT_GETMODE', prefix: '#include <sys/param.h>')}
+
+ # macOS's pthread_setname_np is a special snowflake and differs from literally every other platform.
+ features += {'mac-thread-name': darwin}

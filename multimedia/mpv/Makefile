@@ -4,6 +4,8 @@ GH_ACCOUNT =		mpv-player
 GH_PROJECT =		mpv
 GH_TAGNAME =		v0.38.0
 USE_NOBTCFI =		Yes
+REVISION =			0
+
 
 SHARED_LIBS +=		mpv		2.0
 
@@ -17,8 +19,9 @@ PERMIT_PACKAGE =	Yes
 WANTLIB += ${MODLUA_WANTLIB}
 WANTLIB += EGL SDL2 X11 Xext Xpresent Xrandr Xss Xv archive
 WANTLIB += ass avcodec avdevice avfilter avformat avutil bluray
-WANTLIB += c cdio cdio_cdda cdio_paranoia dvdnav iconv jpeg lcms2
-WANTLIB += m placebo pthread sndio swresample swscale vulkan z zimg
+WANTLIB += c cdio cdio_cdda cdio_paranoia drm dvdnav gbm iconv jpeg lcms2
+WANTLIB += m placebo pthread sndio swresample swscale va va-drm
+WANTLIB += va-x11 vulkan z zimg
 
 MODULES =		devel/meson \
 			lang/lua \
@@ -37,7 +40,7 @@ LIB_DEPENDS =		archivers/libarchive \
 			audio/libcdio-paranoia \
 			converters/libiconv \
 			devel/sdl2 \
-			graphics/ffmpeg \
+			graphics/ffmpeg>=4.4.4p5 \
 			graphics/jpeg \
 			graphics/lcms2 \
 			graphics/libplacebo \
@@ -54,39 +57,44 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+4,-guic
 
 CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
+			-Dcdda=enabled \
+			-Ddvdnav=enabled \
+			-Dlibmpv=true \
+			-Dsdl2=enabled \
+			-Dsndio=enabled \
+			-Dvulkan=enabled \
 			-Dalsa=disabled \
 			-Dandroid-media-ndk=disabled \
 			-Daudiounit=disabled \
 			-Davfoundation=disabled \
 			-Dcaca=disabled \
-			-Dcdda=enabled \
 			-Dcocoa=disabled \
 			-Dcoreaudio=disabled \
 			-Dcuda-hwaccel=disabled \
 			-Dcuda-interop=disabled \
-			-Ddvbin=disabled \
-			-Ddvdnav=enabled \
 			-Dd3d9-hwaccel=disabled \
 			-Dd3d11=disabled \
 			-Dd3d-hwaccel=disabled \
 			-Ddirect3d=disabled \
 			-Ddmabuf-wayland=disabled \
-			-Ddrm=disabled \
+			-Ddrm=enabled \
+			-Ddvbin=disabled \
+			-Degl=enabled \
 			-Degl-android=disabled \
 			-Degl-angle=disabled  \
 			-Degl-angle-lib=disabled \
 			-Degl-angle-win32=disabled \
-			-Degl-drm=disabled \
+			-Degl-drm=enabled \
 			-Degl-wayland=disabled \
-			-Dgbm=disabled \
+			-Dgbm=enabled \
 			-Dgl-cocoa=disabled \
 			-Dgl-dxinterop=disabled \
 			-Dgl-dxinterop-d3d9=disabled \
+			-Dgl-x11=disabled \
 			-Dgl-win32=disabled \
 			-Dios-gl=disabled \
 			-Djack=disabled \
 			-Djavascript=disabled \
-			-Dlibmpv=true \
 			-Dmacos-cocoa-cb=disabled \
 			-Dmacos-media-player=disabled \
 			-Dmacos-touchbar=disabled \
@@ -96,7 +104,6 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dpipewire=disabled \
 			-Dpulse=disabled \
 			-Drubberband=disabled \
-			-Dsdl2=enabled \
 			-Dsdl2-audio=disabled \
 			-Dshaderc=disabled \
 			-Dsixel=disabled \
@@ -104,9 +111,9 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dswift-build=disabled \
 			-Dswift-flags=disabled \
 			-Duchardet=disabled \
-			-Dvaapi=disabled \
-			-Dvaapi-drm=disabled \
-			-Dvaapi-x11=disabled \
+			-Dvaapi=enabled \
+			-Dvaapi-drm=enabled \
+			-Dvaapi-x11=enabled \
 			-Dvaapi-wayland=disabled \
 			-Dvaapi-win32=disabled \
 			-Dvapoursynth=disabled \
@@ -114,12 +121,10 @@ CONFIGURE_ARGS =	-Dlua=lua${MODLUA_DEP_VERSION} \
 			-Dvdpau-gl-x11=disabled \
 			-Dvideotoolbox-gl=disabled \
 			-Dvideotoolbox-pl=disabled \
-			-Dvulkan=enabled \
 			-Dvulkan-interop=disabled \
 			-Dwayland=disabled \
 			-Dwin32-threads=disabled \
 			-Dwasapi=disabled
-
 
 CFLAGS +=		-I${LOCALBASE}/include
 LDFLAGS +=		-L${LOCALBASE}/lib
