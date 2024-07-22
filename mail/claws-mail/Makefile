@@ -15,7 +15,7 @@ PERMIT_PACKAGE=	Yes
 
 SITES=			https://www.claws-mail.org/releases/
 
-COMPILER =		base-clang ports-gcc base-gcc
+COMPILER =		base-clang ports-gcc
 
 MULTI_PACKAGES=		-main -bogofilter -spamassassin -pdfviewer
 FLAVORS=		ldap
@@ -31,11 +31,11 @@ RUN_DEPENDS-spamassassin=${BUILD_PKGPATH} \
 
 WANTLIB += ${COMPILER_LIBCXX} X11 Xau Xcomposite Xcursor Xdamage
 WANTLIB += Xdmcp Xext Xfixes Xi Xinerama Xrandr Xrender atk-1.0
-WANTLIB += atk-bridge-2.0 atspi brotlidec brotlienc cairo cairo-gobject
+WANTLIB += atk-bridge-2.0 atspi cairo cairo-gobject
 WANTLIB += dbus-1 epoll-shim epoxy execinfo expat ffi fontconfig freetype
 WANTLIB += fribidi gdk-3 gdk_pixbuf-2.0 gio-2.0 glib-2.0 gmodule-2.0
 WANTLIB += gobject-2.0 graphite2 gtk-3 harfbuzz iconv intl jpeg m pango-1.0
-WANTLIB += pangocairo-1.0 pangoft2-1.0 pcre2-8 pixman-1 png rsvg-2
+WANTLIB += pangocairo-1.0 pangoft2-1.0 pcre2-8 pixman-1 png
 WANTLIB += wayland-client wayland-cursor wayland-egl xcb xcb-render xcb-shm
 WANTLIB += xkbcommon z
 
@@ -47,7 +47,7 @@ WANTLIB-main += bz2 c canberra canberra-gtk3 crypto curl db db_cxx
 WANTLIB-main += dbus-glib-1 enchant-2 etpan gmp gnutls gpg-error gpgme
 WANTLIB-main += gthread-2.0 gumbo hogweed ical icalss icalvcal icudata
 WANTLIB-main += icui18n icuuc idn2 ltdl lz4 lzma nettle nghttp2 nghttp3
-WANTLIB-main += ngtcp2 ngtcp2_crypto_quictls notify ogg p11-kit perl
+WANTLIB-main += ngtcp2 ngtcp2_crypto_quictls notify ogg p11-kit perl rsvg-2
 WANTLIB-main += sasl2 ssl startup-notification-1 tasn1 unistring
 WANTLIB-main += vorbis vorbisfile xcb-util xml2 zstd
 
@@ -55,9 +55,7 @@ WANTLIB-pdfviewer = ${WANTLIB}
 WANTLIB-pdfviewer += lcms2 lzma openjp2 png poppler poppler-glib tiff zstd
 
 
-LIB_DEPENDS=		archivers/brotli \
-			devel/glib2 \
-			x11/gnome/librsvg \
+LIB_DEPENDS=		devel/glib2 \
 			x11/gtk+3
 
 RUN_DEPENDS-main=	${RUN_DEPENDS} \
@@ -80,9 +78,11 @@ LIB_DEPENDS-main=	${LIB_DEPENDS} \
 			security/libnettle \
 			textproc/enchant2 \
 			textproc/libical \
+			textproc/libxml \
 			www/gumbo \
 			x11/dbus-glib \
-			x11/gnome/at-spi2-core
+			x11/gnome/at-spi2-core \
+			x11/gnome/librsvg
 
 LIB_DEPENDS-pdfviewer=	${LIB_DEPENDS} \
 			print/poppler
@@ -101,8 +101,8 @@ LIBTOOL_FLAGS=		--tag=disable-static
 CONFIGURE_STYLE=	autoconf
 
 AUTOCONF_VERSION=	2.71
-CONFIGURE_ENV+=		CPPFLAGS="-I${X11BASE}/include" \
-			LDFLAGS="-L${X11BASE}/lib"
+CONFIGURE_ENV+=		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
+			LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
 
 .if ${FLAVOR:Mldap}
 WANTLIB-main+=		lber ldap
