@@ -19,7 +19,7 @@ PERMIT_PACKAGE =	Yes
 WANTLIB += ${MODLUA_WANTLIB}
 WANTLIB += EGL SDL2 X11 Xext Xpresent Xrandr Xss Xv archive
 WANTLIB += ass avcodec avdevice avfilter avformat avutil bluray
-WANTLIB += c cdio cdio_cdda cdio_paranoia drm dvdnav gbm iconv jpeg lcms2
+WANTLIB += c cdio cdio_cdda cdio_paranoia drm dvdnav iconv jpeg lcms2
 WANTLIB += m placebo pthread sndio swresample swscale va va-drm
 WANTLIB += va-x11 vulkan z zimg
 
