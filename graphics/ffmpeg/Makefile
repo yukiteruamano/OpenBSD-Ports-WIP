@@ -3,7 +3,7 @@ COMMENT=	audio/video converter and streamer
 V=		4.4.4
 DISTNAME=	ffmpeg-${V}
 EPOCH=		1
-REVISION=	5
+REVISION=	6
 CATEGORIES=	graphics multimedia
 SITES=		https://ffmpeg.org/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -66,12 +66,14 @@ LIB_DEPENDS=	archivers/bzip2 \
 		textproc/libxml
 
 # inter-library dependencies for the current configuration
-LIBavcodec_EXTRALIBS=-L${LOCALBASE}/lib -laom -ldav1d -lgsm -liconv -llzma
+LIBavcodec_EXTRALIBS=-L${LOCALBASE}/lib -L${X11BASE}/lib -laom -ldav1d -lgsm -liconv -llzma
 LIBavcodec_EXTRALIBS+=-lmp3lame -lopus -lspeex -ltheoradec -ltheoraenc -lvorbis
 LIBavcodec_EXTRALIBS+=-lvorbisenc -lvpx -lx264 -lx265 -lxvidcore -lm -lz -pthread
-LIBavcodec_EXTRALIBS+=-L${X11BASE}/lib -lva -lva-drm
+LIBavcodec_EXTRALIBS+=-lva -lva-drm
+
 LIBavdevice_EXTRALIBS=-L${LOCALBASE}/lib -L${X11BASE}/lib -lX11 -lXext -lXv
 LIBavdevice_EXTRALIBS+=-lxcb-shape -lxcb-shm -lxcb-xfixes -lxcb -lsndio -lv4l2 -lm
+
 LIBavfilter_EXTRALIBS=-L${LOCALBASE}/lib -L${X11BASE}/lib -lass -lfontconfig
 LIBavfilter_EXTRALIBS+=-lfreetype -lfribidi -lvidstab -lm -lz -lzimg -pthread -lva
 LIBavformat_EXTRALIBS=-L${LOCALBASE}/lib -lbz2 -lxml2 -lssl -lcrypto -lm -lz
@@ -100,6 +102,7 @@ CONFIGURE_ARGS+=--enable-shared \
 		--disable-stripping \
 		--disable-indev=jack \
 		--disable-outdev=sdl2 \
+		--enable-vaapi \
 		--enable-fontconfig \
 		--enable-frei0r \
 		--enable-gpl \
@@ -125,7 +128,6 @@ CONFIGURE_ARGS+=--enable-shared \
 		--enable-nonfree \
 		--enable-openssl \
 		--enable-libvidstab \
-		--enable-vaapi \
 		--extra-cflags="-I${LOCALBASE}/include -I${X11BASE}/include" \
 		--extra-libs="-L${LOCALBASE}/lib -L${X11BASE}/lib" \
 		--extra-ldsoflags="${LDLIBFLAGS}" \
