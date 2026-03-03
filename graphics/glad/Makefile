@@ -1,13 +1,13 @@
 COMMENT =	multi-language Vulkan/GL/GLES/EGL/GLX/WGL loader-generator
 
-GH_TAGNAME =	v2.0.6
+GH_TAGNAME =	v2.0.8
 GH_ACCOUNT =	Dav1dde
 GH_PROJECT =	glad
 
 CATEGORIES =	graphics
 
 HOMEPAGE =	https://glad.dav1d.de/
-MAINTAINER =	Jose Maldonado <josemald89@gmail.com>
+MAINTAINER =	Jose Maldonado <yukiteruamano@volfread.xyz>
 
 # MIT - Apache 2.0
 PERMIT_PACKAGE =	Yes
