@@ -2,8 +2,12 @@ COMMENT-main=		mail and news client
 COMMENT-bogofilter=	bogofilter plugin
 COMMENT-spamassassin=	spamassassin plugin
 COMMENT-pdfviewer=	pdfviewer plugin
+REVISION-main=		4
+REVISION-bogofilter=	0
+REVISION-pdfviewer=	0
+REVISION-spamassassin=	0
 
-V=			4.3.0
+V=			4.3.1
 DISTNAME=		claws-mail-${V}
 
 CATEGORIES=		mail news
@@ -47,12 +51,13 @@ WANTLIB-main += bz2 c canberra canberra-gtk3 crypto curl db db_cxx
 WANTLIB-main += dbus-glib-1 enchant-2 etpan gmp gnutls gpg-error gpgme
 WANTLIB-main += gthread-2.0 gumbo hogweed ical icalss icalvcal icudata
 WANTLIB-main += icui18n icuuc idn2 ltdl lz4 lzma nettle nghttp2 nghttp3
-WANTLIB-main += ngtcp2 ngtcp2_crypto_quictls notify ogg p11-kit perl rsvg-2
+WANTLIB-main += ngtcp2 ngtcp2_crypto_libressl notify ogg p11-kit perl rsvg-2
 WANTLIB-main += sasl2 ssl startup-notification-1 tasn1 unistring
 WANTLIB-main += vorbis vorbisfile xcb-util xml2 zstd
 
 WANTLIB-pdfviewer = ${WANTLIB}
-WANTLIB-pdfviewer += lcms2 lzma openjp2 png poppler poppler-glib tiff zstd
+WANTLIB-pdfviewer += Lerc lcms2 lzma openjp2 png poppler poppler-glib
+WANTLIB-pdfviewer += tiff zstd
 
 
 LIB_DEPENDS=		devel/glib2 \
@@ -100,7 +105,7 @@ USE_GMAKE=		Yes
 LIBTOOL_FLAGS=		--tag=disable-static
 CONFIGURE_STYLE=	autoconf
 
-AUTOCONF_VERSION=	2.71
+AUTOCONF_VERSION=	2.72
 CONFIGURE_ENV+=		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
 			LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
 
